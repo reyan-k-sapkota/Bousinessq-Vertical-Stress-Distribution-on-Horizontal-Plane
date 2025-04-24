@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+    <title>Horizontal Stress Visualizer</title>
+</head>
+<body>
+    <div class="flex flex-col min-h-screen">
+
+        <h1 class="text-3xl font-bold text-center mt-10 mb-6 px-4"> Boussinesq's Vertical Stress Distribution on Horizontal Plane </h1>
+      
+        <div id="chart-main" class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-64 sm:h-screen flex items-center justify-center">
+          <canvas id="chart" class="w-full h-full" style="border:3px solid red"></canvas>
+        </div>
+      
+        
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-10">
+      
+          
+          <div class="flex flex-col space-y-2">
+            <label for="radial" class="font-medium">Radial Distance (m) [r]</label>
+            <input type="range" id="radial" min="0" max="15" value="9" class="w-full" oninput="document.getElementById('radialVal').innerText=this.value; update_chart(this.valueAsNumber, document.getElementById('vertical').valueAsNumber, document.getElementById('load').valueAsNumber)">
+            <span id="radialVal">9</span>
+          </div>
+      
+          
+          <div class="flex flex-col space-y-2">
+            <label for="vertical" class="font-medium">Vertical Depth below Ground Level (m) [z]</label>
+            <input type="range" id="vertical" min="1" max="10" value="2" class="w-full" oninput="document.getElementById('verticalVal').innerText=this.value; update_chart(document.getElementById('radial').valueAsNumber,this.valueAsNumber, document.getElementById('load').valueAsNumber)">
+            <span id="verticalVal">2</span>
+          </div>
+      
+          
+          <div class="flex flex-col space-y-2">
+            <label for="load" class="font-medium">Vertical Load (kN) [Q]</label>
+            <input type="range" id="load" min="1" max="1000" value="1" class="w-full" oninput="document.getElementById('verticalloadVal').innerText=this.value; update_chart(document.getElementById('radial').valueAsNumber, document.getElementById('vertical').valueAsNumber,this.valueAsNumber)">
+            <span id="verticalloadVal">1 </span>kN
+          </div>
+      
+        </div>
+      
+      </div>
+      <script src="canvas.js"></script>     
+
+</body>
+</html>
